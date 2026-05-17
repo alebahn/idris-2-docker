@@ -17,6 +17,10 @@ on:
       - "*.Dockerfile"
       - "tests/*.sh"
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   base-build-test:
     name: Base Build & Test - ${{ matrix.idris-version }}
