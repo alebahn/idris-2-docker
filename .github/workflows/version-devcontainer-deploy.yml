@@ -1,6 +1,18 @@
 name: Deploy a single version (Devcontainer)
 
 on:
+  workflow_dispatch:
+    inputs:
+      idris-lsp-version:
+        description: Idris LSP version to deploy
+        required: true
+        default: latest
+        type: string
+      idris-version:
+        description: Idris 2 version to deploy
+        required: true
+        default: latest
+        type: string
   workflow_call:
     inputs:
       idris-lsp-version:
@@ -58,4 +70,3 @@ jobs:
           labels: ${{ steps.create-meta.outputs.labels }}
           base-tag: ghcr.io/joshuanianji/idris-2-docker/base:${{ inputs.idris-version }}
           platforms: linux/arm64,linux/amd64
-

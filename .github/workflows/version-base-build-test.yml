@@ -1,6 +1,13 @@
 name: Build and Test a Single Version (Base + Consumers)
 
 on:
+  workflow_dispatch:
+    inputs:
+      idris-version:
+        description: Idris 2 version to build and test
+        required: true
+        default: latest
+        type: string
   workflow_call:
     inputs:
       idris-version:
@@ -103,4 +110,3 @@ jobs:
       - name: Run Test
         run: |
           docker run ${{ env.TAG }} /bin/bash -c "make test"
-

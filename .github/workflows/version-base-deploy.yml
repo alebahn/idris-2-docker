@@ -1,6 +1,13 @@
 name: Deploy One Version (Base + Consumers)
 
 on:
+  workflow_dispatch:
+    inputs:
+      idris-version:
+        description: Idris 2 version to deploy
+        required: true
+        default: latest
+        type: string
   workflow_call:
     inputs:
       idris-version:
@@ -53,4 +60,3 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/base:${{ inputs.idris-version }}
           labels: ${{ steps.create-meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
-

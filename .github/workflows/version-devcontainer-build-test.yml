@@ -1,6 +1,18 @@
 name: Build and Test a Single Version (Devcontainer)
 
 on:
+  workflow_dispatch:
+    inputs:
+      idris-lsp-version:
+        description: Idris LSP version to build and test
+        required: true
+        default: latest
+        type: string
+      idris-version:
+        description: Idris 2 version to build and test
+        required: true
+        default: latest
+        type: string
   workflow_call:
     inputs:
       idris-lsp-version:
