@@ -5,7 +5,7 @@ ARG IDRIS_VERSION=0.7.0
 ARG BASE_IMG=ghcr.io/joshuanianji/idris-2-docker/base:${IDRIS_VERSION}
 FROM $BASE_IMG AS base
 
-FROM debian:bullseye AS rlwrap-builder
+FROM ubuntu:24.04 AS rlwrap-builder
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -24,7 +24,7 @@ RUN ./configure --without-libptytty LDFLAGS='-static'
 RUN make
 RUN make install
 
-FROM mcr.microsoft.com/vscode/devcontainers/base:bullseye
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 ARG IDRIS_VERSION
 ARG BASE_IMG

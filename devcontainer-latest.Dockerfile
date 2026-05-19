@@ -4,7 +4,7 @@
 ARG BASE_IMG=ghcr.io/joshuanianji/idris-2-docker/base:latest
 FROM $BASE_IMG AS base
 
-FROM debian:bullseye AS rlwrap-builder
+FROM ubuntu:24.04 AS rlwrap-builder
 RUN apt-get update && \
     apt-get install -y \
     git \
@@ -23,7 +23,7 @@ RUN ./configure --without-libptytty LDFLAGS='-static'
 RUN make
 RUN make install
 
-FROM mcr.microsoft.com/vscode/devcontainers/base:bullseye
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 # Install system dependencies required for pack
 ENV DEBIAN_FRONTEND=noninteractive
