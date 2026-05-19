@@ -7,12 +7,14 @@ FROM $BASE_IMG AS base
 FROM ubuntu:24.04 AS rlwrap-builder
 RUN apt-get update && \
     apt-get install -y \
+    ca-certificates \
     git \
     make \
     gcc \
     autotools-dev \
     libreadline-dev \
-    autoconf
+    autoconf \
+    automake
 
 # Build rlwrap from source
 WORKDIR /opt
